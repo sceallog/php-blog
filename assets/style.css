@@ -7,6 +7,10 @@ th, td {
     padding: 10px 20px;
 }
 
+td.right {
+    text-align: right;
+}
+
 th {
     background-color: cyan;
 }

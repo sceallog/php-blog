@@ -34,13 +34,25 @@ if(isset($id)) {
 ?>
 <h3>ユーザ登録</h3>
 <form method="post">
-    <label for="name">お名前</label>
-    <input type="text" name="name" id="name"><br>
-    <label for="userID">ユーザID</label>
-    <input type="text" name="userID" id="userID"><br>
-    <label for="password">パスワード</label>
-    <input type="text" name="password" id="password"><br>
-    <button>登録</button>
+    <table>
+        <tr>
+            <td><label for="name">お名前</label></td>
+            <td><input type="text" name="name" id="name"><br></td>
+        </tr>
+        <tr>
+            <td><label for="userID">ユーザID</label></td>
+            <td><input type="text" name="userID" id="userID"><br></td>
+        </tr>
+        <tr>
+            <td><label for="password">パスワード</label></td>
+            <td><input type="text" name="password" id="password"><br></td>
+        </tr>
+        <tr>
+            <td class="right" colspan="2">
+                <button>登録</button>
+            </td>
+        </tr>
+    </table>
 </form>
 </body>
 </html>

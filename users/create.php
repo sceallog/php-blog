@@ -13,7 +13,7 @@ if($userID != '' && $name != '' && $password != ''){
             VALUES (:userID, :name, :password)"
    );
    $statement -> execute(array(":userID" => $userID, ":name" => $name, ":password" => $password));
-   $count -> $statement->rowCount();
+   $count = $statement->rowCount();
    if($count == 1){
        // ユーザ追加に成功
        $id = $conn->lastInsertId(); // 自動採番されたidの番号を取得する

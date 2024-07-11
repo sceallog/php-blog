@@ -7,10 +7,13 @@ $author = isset($_SESSION['id'])? $_SESSION['id'] : '';
 //入力前の段階ではないか、入力内容に不足がないか確認。
 if($subject != '' && $body != ''){
     // SQL文のINSERT INTOを実行する
-   $created = $conn->exec(
+   $statement = $conn->prepare(
             "INSERT INTO articles (subject, body, author) 
-            VALUES ('{$subject}', '{$body}', '{$author}')");
-   if($created == 1){
+            VALUES (:subject, :body, :author)"
+   );
+   $statement -> execute(array(":subject" => $subject, ":body" => $body, ":author" => $author));
+   $count = $statement->rowCount();
+   if($count == 1){
        // ユーザ追加に成功
        $id = $conn->lastInsertId(); // 自動採番されたidの番号を取得する
    }

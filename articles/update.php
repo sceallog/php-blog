@@ -2,6 +2,8 @@
 include '../connect.php';
 include '../head.php';
 
+$conn = connect();
+
 if(!isset($_SESSION['id'])){
     header('Location: ../login/login.html');
     exit(0);

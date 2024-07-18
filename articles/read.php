@@ -2,6 +2,7 @@
 include('../connect.php');
 include('../head.php');
 
+$conn = connect();
 $id = $_GET['id'];
 $statement = $conn->prepare("
     SELECT articles.*, users.name 

@@ -3,6 +3,7 @@ include('../connect.php');
 include('../head.php');
 // http://localhost/M23W0012/0613/users/delete.php?id=<id>
 
+$conn = connect();
 $id = $_GET['id']; // 記事のID
 $authorID = $_SESSION['id']; // ログイン中のユーザのID
 // ログインしていなければ、ログイン画面へ転送

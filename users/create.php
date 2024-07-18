@@ -2,6 +2,7 @@
 include '../connect.php';
 include '../head.php';
 
+$conn = connect();
 $userID = isset($_POST['userID'])? $_POST['userID'] : '';
 $name = isset($_POST['name'])? $_POST['name'] : '';
 $password = isset($_POST['password'])? $_POST['password'] : '';

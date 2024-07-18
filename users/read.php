@@ -1,13 +1,16 @@
 <?php
 include '../connect.php';
 include '../head.php';
+require '../functions/isFollowing.php';
+require '../functions/getUser.php';
+require '../components/followButton.php';
 
+$conn = connect();
 $id = $_GET['id'];
-$statement = $conn->prepare(
-        "SELECT * FROM `users` WHERE id = :id"
-);
-$statement->execute(array(':id' => $id));
-$r = $statement->fetch();
+$r = getUser($id, $conn);
+$loggedInUserId = $_SESSION['id'];
+$isFollowing = isFollowing($loggedInUserId, $id, $conn);
+
 
 setHead('Users', '../assets/style.css');
 ?>
@@ -48,6 +51,16 @@ if (isset($loggedInUser)) {
             </form>
         </td>
     </tr>
+    <?php if ($r['id'] != $loggedInUserId) { ?>
+    <tr>
+        <td>
+                <?php createFollowButton($loggedInUserId, $r, $conn);?>
+        </td>
+    </tr>
+    <?php }?>
 </table>
+<form action="search.php">
+    <button>一覧へ</button>
+</form>
 </body>
 </html>

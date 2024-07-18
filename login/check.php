@@ -1,5 +1,6 @@
 <?php
 include("../connect.php");
+    $conn = connect();
     $u = $_POST["userID"];
     $p = $_POST["password"];
     $flag = false;

@@ -1,6 +1,8 @@
 <?php
 include '../connect.php';
 
+$conn = connect();
+
 $subject = isset($_POST['subject'])? $_POST['subject'] : '';
 $body = isset($_POST['body'])? $_POST['body'] : '';
 $author = isset($_SESSION['id'])? $_SESSION['id'] : '';

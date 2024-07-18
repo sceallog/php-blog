@@ -2,6 +2,7 @@
 include '../connect.php';
 include '../head.php';
 
+$conn = connect();
 if(isset($_GET['id'])){
     // 初回表示でread.phpの先頭のコードを流用
     $id = $_GET['id'];

@@ -1,10 +1,14 @@
 <?php
 include "../connect.php";
 include '../head.php';
+include '../functions/isFollowing.php';
+require '../functions/getUsersByKeyword.php';
+require '../components/followButton.php';
 
+$conn = connect();
 $keyword = isset($_POST['keyword']) ? $_POST['keyword'] : "";
 
-setHead('User Search', '../assets/style.css');
+setHead('User Search', '../assets/style.css', '../assets/main.js');
 ?>
 <body>
 <?php
@@ -37,13 +41,9 @@ if (isset($loggedInUser)) {
         <th>name</th>
     </tr>
 <?php
-$statement = $conn->prepare(
-        "SELECT * FROM users WHERE name LIKE :keyword;"
-);
-$keyword = "%$keyword%";
-$statement->execute(array(':keyword' => $keyword));
-$result = $statement->fetchAll();
 
+$result = getUsersByKeyword($keyword, $conn);
+$loggedInUserId = $_SESSION['id'];
 foreach($result as $row){
     echo "<tr>";
     echo '<td>',
@@ -53,8 +53,14 @@ foreach($result as $row){
     '</a></td>';
     echo "<td>{$row['userID']}</td>";
     echo "<td>{$row['name']}</td>";
+    echo "<td>";
+    if($loggedInUserId != $row['id']) {
+        createFollowButton($loggedInUserId, $row, $conn);
+    }
+    echo "</td>";
     echo "</tr>";
 }
+
 ?>
 </table>
 </body>

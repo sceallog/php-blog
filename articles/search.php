@@ -2,6 +2,7 @@
 include "../connect.php";
 include "../head.php";
 
+$conn = connect();
 $keyword = isset($_POST['keyword']) ? $_POST['keyword'] : "";
 
 setHead('Article Search', '../assets/style.css');

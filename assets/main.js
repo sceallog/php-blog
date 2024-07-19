@@ -14,8 +14,12 @@ $(document).ready(function() {
             if (response.success) {
                 if (isFollowing) {
                     $button.text('フォロー').data('following', 0);
+                    $button.addClass('btn-success');
+                    $button.removeClass('btn-outline-danger');
                 } else {
                     $button.text('フォロー解除').data('following', 1);
+                    $button.addClass('btn-outline-danger');
+                    $button.removeClass('btn-success');
                 }
             } else {
                 alert('An error occurred: ' + response.message);

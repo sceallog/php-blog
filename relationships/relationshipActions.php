@@ -24,4 +24,4 @@ if ($action == 'unfollow') {
 //print json_encode($response);
 //print $response;
 //return $response;
-return json_encode($response);
+echo json_encode($response);

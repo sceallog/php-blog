@@ -1,58 +1,54 @@
 <?php
 include('../connect.php');
 include('../head.php');
+require '../functions/getArticle.php';
 
 $conn = connect();
 $id = $_GET['id'];
-$statement = $conn->prepare("
-    SELECT articles.*, users.name 
-    FROM articles, users 
-    WHERE articles.author = users.id 
-    AND articles.id = :id
-");
-$statement -> execute(array(':id' => $id));
-$r = $statement->fetch();
+$article = getArticle($id, $conn);
 
-setHead('Read', '../assets/style.css');
+setHead('Read', '../assets/style.css', '../assets/main.js');
 ?>
 <body>
-<table>
+<?php include('../components/navbar.php'); ?>
+<div class="p-5 mb-4 bg-body-tertiary rounded-3">
+<table class="table table-striped">
     <tr>
         <th>id</th>
-        <td><?php echo $r['id']; ?></td>
+        <td><?php echo $article['id']; ?></td>
     </tr>
     <tr>
         <th>表題</th>
-        <td><?php echo $r['subject']; ?></td>
+        <td><?php echo $article['subject']; ?></td>
     </tr>
     <tr>
         <th>本文</th>
-        <td><pre><?php echo $r['body']; ?></pre></td>
+        <td><pre><?php echo $article['body']; ?></pre></td>
     </tr>
     <tr>
         <th>筆者</th>
-        <td><?php echo $r['name']; ?></td>
+        <td><?php echo $article['name']; ?></td>
     </tr>
     <tr>
         <th>更新日時</th>
-        <td><?php echo $r['modified']; ?></td>
+        <td><?php echo $article['modified']; ?></td>
     </tr>
     <tr>
         <td>
             <form action="update.php" method="get">
                 <input type="hidden" name="id" value="<?php echo $id; ?>">
-                <button>更新</button>
+                <button class="btn btn-primary">更新</button>
             </form>
         <td>
             <form action="delete.php" method="get">
                 <input type="hidden" name="id" value="<?php echo $id; ?>">
-                <button>削除</button>
+                <button class="btn btn-danger">削除</button>
             </form>
         </td>
     </tr>
 </table>
 <form action="search.php">
-    <button>一覧へ</button>
+    <button class="btn btn-primary">一覧へ</button>
 </form>
 </body>
 </html>

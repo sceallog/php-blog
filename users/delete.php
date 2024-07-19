@@ -7,7 +7,7 @@ $conn = connect();
 $id = $_GET['id'];
 // ログインしていなければ、ログイン画面へ転送
 if(!isset($_SESSION['id']) || $_SESSION['id'] != $id){
-    header('Location: ../login/login.html');
+    header('Location: ../login/login.php');
     exit(0);
 }
 
@@ -25,7 +25,7 @@ if($id != ''){
     }
 }
 
-setHead('User Delete', '../assets/style.css');
+setHead('User Delete', '../assets/style.css', '../assets/main.js');
 ?>
 <body>
 

@@ -5,7 +5,7 @@ include '../head.php';
 $conn = connect();
 
 if(!isset($_SESSION['id'])){
-    header('Location: ../login/login.html');
+    header('Location: ../login/login.php');
     exit(0);
 }
 
@@ -35,7 +35,7 @@ $statement = $conn->prepare("SELECT * FROM articles WHERE id=:id AND author=:aut
 $statement -> execute(array(":id" => $id, ":author_id" => $_SESSION['id']));
 $r = $statement->fetch();
 if(!$r){ // fetch()が失敗する場合、更新できない。 author='{$_SESSION['id']}' が等しくない。
-    header("Location: ../login/login.html");
+    header("Location: ../login/login.php");
     exit(0);
 }
 

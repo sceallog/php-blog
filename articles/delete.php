@@ -8,7 +8,7 @@ $id = $_GET['id']; // 記事のID
 $authorID = $_SESSION['id']; // ログイン中のユーザのID
 // ログインしていなければ、ログイン画面へ転送
 if(!isset($authorID)){
-    header('Location: ../login/login.html');
+    header('Location: ../login/login.php');
     exit(0); // PHPのプログラム終了
 }
 
@@ -29,7 +29,7 @@ if($id != ''){
     }
 }
 
-setHead('Article Delete', '../assets/style.css');
+setHead('Article Delete', '../assets/style.css', '../assets/main.js');
 ?>
 <body>
 

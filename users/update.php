@@ -7,7 +7,7 @@ if(isset($_GET['id'])){
     // 初回表示でread.phpの先頭のコードを流用
     $id = $_GET['id'];
     if(!isset($_SESSION['id'])){
-        header('Location: ../login/login.html');
+        header('Location: ../login/login.php');
         exit(0); // PHPのプログラムを終了
     }
     $statement = $conn->prepare("SELECT * FROM users WHERE id=:id;");
@@ -18,7 +18,7 @@ if(isset($_GET['id'])){
     $id = isset($_POST['id']) ? $_POST['id'] : "";
 
     if(!isset($_SESSION['id']) || $_SESSION['id'] != $id){
-        header('Location: ../login/login.html');
+        header('Location: ../login/login.php');
         exit(0);
     }
     
@@ -39,7 +39,7 @@ if(isset($_GET['id'])){
     }
 }
 
-setHead('User Update', '../assets/style.css');
+setHead('User Update', '../assets/style.css', '../assets/main.js');
 ?>
 <body>
 <?php

@@ -3,64 +3,73 @@ include '../connect.php';
 include '../head.php';
 require '../functions/isFollowing.php';
 require '../functions/getUser.php';
-require '../components/followButton.php';
 
 $conn = connect();
 $id = $_GET['id'];
-$r = getUser($id, $conn);
+$row = getUser($id, $conn);
 $loggedInUserId = $_SESSION['id'];
-$isFollowing = isFollowing($loggedInUserId, $id, $conn);
+$isFollowing = isFollowing($loggedInUserId, $row, $conn);
 
 
-setHead('Users', '../assets/style.css');
+setHead('Users', '../assets/style.css', '../assets/main.js');
 ?>
 <body>
+<?php include('../components/navbar.php'); ?>
+<div class="container py-4">
 <?php
 $loggedInUser = $_SESSION['name'];
 if (isset($loggedInUser)) {
     $message = "{$loggedInUser}さんログイン中";
     echo "
     <form action='../login/logout.php'>
-     <button>ログアウト</button>
+     <button class='btn btn-light'>ログアウト</button>
     </form>";
 }
 ?>
-<table>
+    <div class="p-5 mb-4 bg-body-tertiary rounded-3">
+<table class="table table-striped">
     <tr>
         <th>id</th>
-        <td><?php echo $r['id']; ?></td>
+        <td><?php echo $row['id']; ?></td>
     </tr>
     <tr>
         <th>userID</th>
-        <td><?php echo $r['userID']; ?></td>
+        <td><?php echo $row['userID']; ?></td>
     </tr>
     <tr>
         <th>name</th>
-        <td><?php echo $r['name']; ?></td>
+        <td><?php echo $row['name']; ?></td>
     </tr>
     <tr>
+        <?php if ($loggedInUserId == $id) { ?>
         <td>
             <form action="update.php" method="get">
                 <input type="hidden" name="id" value="<?php echo $id; ?>">
-                <button>更新</button>
+                <button class="btn btn-primary">更新</button>
             </form>
+        </td>
         <td>
             <form action="delete.php" method="get">
                 <input type="hidden" name="id" value="<?php echo $id; ?>">
-                <button>削除</button>
+                <button class="btn btn-danger">削除</button>
             </form>
         </td>
+        <?php } ?>
     </tr>
-    <?php if ($r['id'] != $loggedInUserId) { ?>
+    <?php if ($row['id'] != $loggedInUserId) { ?>
     <tr>
         <td>
-                <?php createFollowButton($loggedInUserId, $r, $conn);?>
+            <div class="ml-9">
+                <?php include('../components/followButton.php');?>
+            </div>
         </td>
     </tr>
     <?php }?>
 </table>
 <form action="search.php">
-    <button>一覧へ</button>
+    <button class="btn btn-primary">一覧へ</button>
 </form>
+</div>
+</div>
 </body>
 </html>

@@ -1,37 +1,28 @@
 <?php
 include "../connect.php";
 include "../head.php";
+require '../functions/getArticlesByKeyword.php';
 
 $conn = connect();
 $keyword = isset($_POST['keyword']) ? $_POST['keyword'] : "";
 
-setHead('Article Search', '../assets/style.css');
+setHead('Article Search', '../assets/style.css', '../assets/main.js');
 ?>
 <body>
 <?php
-$loggedInUser = $_SESSION['name'];
-if (isset($loggedInUser)) {
-    $message = "{$loggedInUser}さんログイン中";
-    echo "
-    <form action='../login/logout.php'>
-     <button>ログアウト</button>
-    </form>";
-} else {
-    $message = "ゲストさん";
-    echo "
-    <form action='../login/login.html'>
-     <button>ログイン</button>
-    </form>";
-}
+include ('../components/navbar.php');
 ?>
-<div><?php echo $message ?></div>
-<button><a href="create.php">新規登録</a></button>
-<form method="post">
-    <input type="text" name="keyword">
-    <button>検索</button>
-</form>
+<div class="container py-4">
+    <div class="p-5 mb-4 bg-body-tertiary rounded-3">
+        <h3>記事一覧</h3>
+<div class="container-fluid d-flex flex-row-reverse mb-3">
+    <form method="post">
+        <input type="text" name="keyword" placeholder="記事の表題を検索する">
+        <button class="btn btn-dark">検索</button>
+    </form>
+</div>
 <hr>
-<table>
+<table class="table table-striped">
     <tr>
         <th>id</th>
         <th>表題</th>
@@ -39,16 +30,9 @@ if (isset($loggedInUser)) {
         <th>更新日時</th>
     </tr>
 <?php
-$statement = $conn -> prepare(
-"SELECT articles.*, users.name 
-    FROM articles, users 
-    WHERE articles.author = users.id 
-    AND articles.subject LIKE :keyword;"
-);
- $keyword = '%'.$keyword.'%';
- $statement -> execute(array(":keyword" => $keyword));
+$result = getArticlesByKeyword($keyword, $conn);
 
-foreach($statement as $row){
+foreach($result as $row){
     echo "<tr>";
     echo '<td>',
     '<a href="read.php?id=',
@@ -62,5 +46,7 @@ foreach($statement as $row){
 }
 ?>
 </table>
+    </div>
+</div>
 </body>
 </html>

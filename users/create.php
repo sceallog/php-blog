@@ -21,7 +21,7 @@ if($userID != '' && $name != '' && $password != ''){
    }
 }
 
-setHead('User Create', '../assets/style.css');
+setHead('User Create', '../assets/style.css', '../assets/main.js');
 ?>
 <body>
 <?php
@@ -33,27 +33,27 @@ if(isset($id)) {
     '</a><br>';
 }
 ?>
-<h3>ユーザ登録</h3>
-<form method="post">
-    <table>
-        <tr>
-            <td><label for="name">お名前</label></td>
-            <td><input type="text" name="name" id="name"><br></td>
-        </tr>
-        <tr>
-            <td><label for="userID">ユーザID</label></td>
-            <td><input type="text" name="userID" id="userID"><br></td>
-        </tr>
-        <tr>
-            <td><label for="password">パスワード</label></td>
-            <td><input type="text" name="password" id="password"><br></td>
-        </tr>
-        <tr>
-            <td class="right" colspan="2">
-                <button>登録</button>
-            </td>
-        </tr>
-    </table>
+<div class="container py-4">
+    <div class="p-5 mb-4 bg-body-tertiary rounded-3">
+<h3 class="text-center">ユーザーの新規登録</h3>
+<form  method="post">
+    <div class="mb-3">
+            <label for="name" class="form-label">お名前</label>
+            <input type="text" class="form-control" name="name" id="name">
+    </div>
+    <div class="mb-3">
+            <label for="userID" class="form-label">ユーザ名</label>
+            <input type="text" class="form-control" name="userID" id="userID">
+    </div>
+    <div class="mb-3">
+            <label for="password" class="form-label">パスワード</label>
+            <input type="text" class="form-control" name="password" id="password">
+    </div>
+    <div class="d-grid gap-2 col-6 mx-auto">
+                <button type="submit" class="btn btn-success">登録</button>
+    </div>
 </form>
+</div>
+</div>
 </body>
 </html>

@@ -1,6 +1,6 @@
 <?php
 include '../connect.php';
-include '../head.php';
+include '../components/head.php';
 
 $conn = connect();
 if(isset($_GET['id'])){
@@ -38,7 +38,11 @@ if(isset($_GET['id'])){
         $count = $statement->rowCount();
     }
 }
+?>
+<!DOCTYPE html>
+<html lang="ja">
 
+<?php
 setHead('User Update', '../assets/style.css', '../assets/main.js');
 ?>
 <body>
@@ -47,16 +51,28 @@ if(isset($count) && $count == 1) {
     echo "ユーザ情報を更新しました。id = {$id}<br>";
 }
 ?>
-<h3>ユーザ情報更新</h3>
+<div class="container py-4">
+    <div class="p-5 mb-4 bg-body-tertiary rounded-3">
+<h3 class="text-center">ユーザ情報更新</h3>
 <form method="post" action="update.php">
     <input type="hidden" name="id" value="<?php echo($id); ?>">
-    <label for="name">お名前</label>
-    <input type="text" name="name" id="name" value="<?php echo($r['name']); ?>"><br>
-    <label for="userID">ユーザID</label>
-    <input type="text" name="userID" id="userID" value="<?php echo($r['userID']); ?>"><br>
-    <label for="password">パスワード</label>
-    <input type="text" name="password" id="password" value="<?php echo($r['password']); ?>"><br>
-    <button>更新</button>
+    <div class="mb-3">
+    <label for="name" class="form-label">お名前</label>
+    <input type="text" name="name" id="name" class="form-control" value="<?php echo($r['name']); ?>"><br>
+    </div>
+    <div class="mb-3">
+    <label for="userID" class="form-label">ユーザID</label>
+    <input type="text" name="userID" id="userID" class="form-control" value="<?php echo($r['userID']); ?>"><br>
+    </div>
+    <div class="mb-3">
+    <label for="password" class="form-label">パスワード</label>
+    <input type="text" name="password" id="password" class="form-control" value="<?php echo($r['password']); ?>"><br>
+    </div>
+    <div class="d-grid gap-2 col-6 mx-auto">
+    <button type="submit" class="btn btn-success">更新</button>
+    </div>
 </form>
+    </div>
+</div>
 </body>
 </html>

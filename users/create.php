@@ -1,6 +1,6 @@
 <?php
 include '../connect.php';
-include '../head.php';
+include '../components/head.php';
 
 $conn = connect();
 $userID = isset($_POST['userID'])? $_POST['userID'] : '';
@@ -20,7 +20,10 @@ if($userID != '' && $name != '' && $password != ''){
        $id = $conn->lastInsertId(); // 自動採番されたidの番号を取得する
    }
 }
-
+?>
+<!DOCTYPE html>
+<html lang="ja">
+<?php
 setHead('User Create', '../assets/style.css', '../assets/main.js');
 ?>
 <body>

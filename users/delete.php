@@ -1,6 +1,6 @@
 <?php
 include '../connect.php';
-include '../head.php';
+include '../components/head.php';
 // http://localhost/M23W0012/0613/users/delete.php?id=<id>
 
 $conn = connect();
@@ -24,7 +24,10 @@ if($id != ''){
         session_destroy();
     }
 }
-
+?>
+<!DOCTYPE html>
+<html lang="ja">
+<?php
 setHead('User Delete', '../assets/style.css', '../assets/main.js');
 ?>
 <body>

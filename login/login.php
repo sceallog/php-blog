@@ -1,6 +1,9 @@
 <?php
-include '../head.php';
-
+include '../components/head.php';
+?>
+<!doctype html>
+<html lang="ja">
+<?php
 setHead('ログイン', '../assets/style.css', '../assets/main.js');
 ?>
 <body>

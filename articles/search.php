@@ -1,11 +1,16 @@
 <?php
 include "../connect.php";
-include "../head.php";
+include "../components/head.php";
 require '../functions/getArticlesByKeyword.php';
 
 $conn = connect();
 $keyword = isset($_POST['keyword']) ? $_POST['keyword'] : "";
+?>
 
+<!DOCTYPE html>
+<html lang="ja">
+
+<?php
 setHead('Article Search', '../assets/style.css', '../assets/main.js');
 ?>
 <body>
@@ -14,11 +19,15 @@ include ('../components/navbar.php');
 ?>
 <div class="container py-4">
     <div class="p-5 mb-4 bg-body-tertiary rounded-3">
-        <h3>記事一覧</h3>
+        <h3 class="text-center">記事一覧</h3>
 <div class="container-fluid d-flex flex-row-reverse mb-3">
-    <form method="post">
-        <input type="text" name="keyword" placeholder="記事の表題を検索する">
+    <form method="post" class="row g-2">
+        <div class="col-auto">
+        <input type="text" name="keyword" placeholder="記事の表題を検索する" class="form-control">
+        </div>
+        <div class="col-auto">
         <button class="btn btn-dark">検索</button>
+        </div>
     </form>
 </div>
 <hr>

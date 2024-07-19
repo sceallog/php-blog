@@ -1,5 +1,6 @@
 <?php
 include '../connect.php';
+include '../components/head.php';
 
 $conn = connect();
 
@@ -22,13 +23,11 @@ if($subject != '' && $body != ''){
 }
 ?>
 <!DOCTYPE html>
-<html>
-<head>
-<meta charset="utf-8">
-<title>create</title>
-</head>
+<html lang="ja">
+<?php setHead('Article Search', '../assets/style.css', '../assets/main.js'); ?>
 <body>
 <?php
+include '../components/navbar.php';
 if(isset($id)) {
     echo "記事を追加しました。id = ";
     echo '<a href="read.php?id=',
@@ -37,13 +36,24 @@ if(isset($id)) {
     '</a><br>';
 }
 ?>
-<h3>記事の新規作成</h3>
+<div class="container py-4">
+    <div class="p-5 mb-4 bg-body-tertiary rounded-3">
+
+<h3 class="text-center">記事の新規作成</h3>
 <form method="post">
-    <label for="subject">表題</label>
-    <input type="text" name="subject" id="subject"><br>
-    <label for="body">本文</label>
-    <textarea name="body" id="body" rows="5" cols="33"></textarea><br>
-    <button>作成</button>
+    <div class="mb-3">
+    <label for="subject" class="form-label">表題</label>
+    <input type="text" name="subject" id="subject" class="form-control"><br>
+    </div>
+    <div class="mb-3">
+    <label for="body" class="form-label">本文</label>
+    <textarea name="body" id="body" rows="10" class="form-control"></textarea><br>
+    </div>
+    <div class="d-grid gap-2 col-6 mx-auto">
+    <button type="submit" class="btn btn-success">作成</button>
+    </div>
 </form>
+    </div>
+</div>
 </body>
 </html>

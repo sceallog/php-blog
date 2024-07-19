@@ -1,6 +1,6 @@
 <?php
 include '../connect.php';
-include '../head.php';
+include '../components/head.php';
 
 $conn = connect();
 
@@ -38,8 +38,11 @@ if(!$r){ // fetch()が失敗する場合、更新できない。 author='{$_SESS
     header("Location: ../login/login.php");
     exit(0);
 }
-
-setHead('Article Update', '../assets/style.css');
+?>
+<!DOCTYPE html>
+<html lang="ja">
+<?php
+setHead('Article Update', '../assets/style.css', '../assets/main.js');
 ?>
 <body>
 <?php
@@ -48,14 +51,24 @@ if(isset($count) && $count == 1) {
     echo '<a href="read.php?id=', $id, '">', $id, '</a><br>';
 }
 ?>
-<h3>ユーザ情報更新</h3>
-<form method="post" action="update.php">
+<div class="container py-4">
+    <div class="p-5 mb-4 bg-body-tertiary rounded-3">
+<h3 class="text-center">記事の更新</h3>
+<form method="post" action="update.php" >
     <input type="hidden" name="id" value="<?php echo($id); ?>">
-    <label for="name">件名：</label>
-    <input type="text" name="subject" id="subject" value="<?php echo($r['subject']); ?>"><br>
-    <label for="body">ユーザID</label>
-    <textarea name="body" id="body"><?php echo($r['body']); ?></textarea><br>
-    <button>更新</button>
+    <div class="mb-3">
+    <label for="subject" class="form-label">件名：</label>
+    <input type="text" name="subject" id="subject" class="form-control" value="<?php echo($r['subject']); ?>"><br>
+    </div>
+    <div class="mb-3">
+    <label for="body" class="form-label">ユーザID</label>
+    <textarea name="body" id="body" class="form-control"><?php echo($r['body']); ?></textarea><br>
+    </div>
+    <div class="d-grid gap-2 col-6 mx-auto">
+    <button type="submit" class="btn btn-success">更新</button>
+    </div>
 </form>
+    </div>
+</div>
 </body>
 </html>

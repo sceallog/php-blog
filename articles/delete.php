@@ -1,6 +1,6 @@
 <?php
 include('../connect.php');
-include('../head.php');
+include('../components/head.php');
 // http://localhost/M23W0012/0613/users/delete.php?id=<id>
 
 $conn = connect();
@@ -28,7 +28,10 @@ if($id != ''){
         echo "<button><a href='search.php'>一覧へ</a></button>";
     }
 }
-
+?>
+<!DOCTYPE html>
+<html lang="ja">
+<?php
 setHead('Article Delete', '../assets/style.css', '../assets/main.js');
 ?>
 <body>

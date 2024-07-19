@@ -1,12 +1,16 @@
 <?php
 include('../connect.php');
-include('../head.php');
+include('../components/head.php');
 require '../functions/getArticle.php';
 
 $conn = connect();
 $id = $_GET['id'];
 $article = getArticle($id, $conn);
-
+$loggedInUserId = $_SESSION['id'];
+?>
+<!DOCTYPE html>
+<html lang='ja'>
+<?php
 setHead('Read', '../assets/style.css', '../assets/main.js');
 ?>
 <body>
@@ -33,6 +37,7 @@ setHead('Read', '../assets/style.css', '../assets/main.js');
         <th>更新日時</th>
         <td><?php echo $article['modified']; ?></td>
     </tr>
+    <?php if($loggedInUserId === $article['author']) { ?>
     <tr>
         <td>
             <form action="update.php" method="get">
@@ -46,6 +51,7 @@ setHead('Read', '../assets/style.css', '../assets/main.js');
             </form>
         </td>
     </tr>
+    <?php } ?>
 </table>
 <form action="search.php">
     <button class="btn btn-primary">一覧へ</button>

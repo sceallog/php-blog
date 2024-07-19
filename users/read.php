@@ -1,6 +1,6 @@
 <?php
 include '../connect.php';
-include '../head.php';
+include '../components/head.php';
 require '../functions/isFollowing.php';
 require '../functions/getUser.php';
 
@@ -9,24 +9,16 @@ $id = $_GET['id'];
 $row = getUser($id, $conn);
 $loggedInUserId = $_SESSION['id'];
 $isFollowing = isFollowing($loggedInUserId, $row, $conn);
-
-
+?>
+<!DOCTYPE html>
+<html lang="ja">
+<?php
 setHead('Users', '../assets/style.css', '../assets/main.js');
 ?>
 <body>
 <?php include('../components/navbar.php'); ?>
 <div class="container py-4">
-<?php
-$loggedInUser = $_SESSION['name'];
-if (isset($loggedInUser)) {
-    $message = "{$loggedInUser}さんログイン中";
-    echo "
-    <form action='../login/logout.php'>
-     <button class='btn btn-light'>ログアウト</button>
-    </form>";
-}
-?>
-    <div class="p-5 mb-4 bg-body-tertiary rounded-3">
+<div class="p-5 mb-4 bg-body-tertiary rounded-3">
 <table class="table table-striped">
     <tr>
         <th>id</th>

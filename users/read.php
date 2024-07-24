@@ -13,7 +13,7 @@ $isFollowing = isFollowing($loggedInUserId, $row, $conn);
 <!DOCTYPE html>
 <html lang="ja">
 <?php
-setHead('Users', '../assets/style.css', '../assets/main.js');
+setHead('Users', '../assets/style.css', '../assets/follow.js');
 ?>
 <body>
 <?php include('../components/navbar.php'); ?>

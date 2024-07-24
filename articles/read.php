@@ -15,46 +15,38 @@ setHead('Read', '../assets/style.css', '../assets/main.js');
 ?>
 <body>
 <?php include('../components/navbar.php'); ?>
-<div class="p-5 mb-4 bg-body-tertiary rounded-3">
-<table class="table table-striped">
-    <tr>
-        <th>id</th>
-        <td><?php echo $article['id']; ?></td>
-    </tr>
-    <tr>
-        <th>表題</th>
-        <td><?php echo $article['subject']; ?></td>
-    </tr>
-    <tr>
-        <th>本文</th>
-        <td><pre><?php echo $article['body']; ?></pre></td>
-    </tr>
-    <tr>
-        <th>筆者</th>
-        <td><?php echo $article['name']; ?></td>
-    </tr>
-    <tr>
-        <th>更新日時</th>
-        <td><?php echo $article['modified']; ?></td>
-    </tr>
-    <?php if($loggedInUserId === $article['author']) { ?>
-    <tr>
-        <td>
-            <form action="update.php" method="get">
-                <input type="hidden" name="id" value="<?php echo $id; ?>">
-                <button class="btn btn-primary">更新</button>
-            </form>
-        <td>
-            <form action="delete.php" method="get">
-                <input type="hidden" name="id" value="<?php echo $id; ?>">
-                <button class="btn btn-danger">削除</button>
-            </form>
-        </td>
-    </tr>
-    <?php } ?>
-</table>
-<form action="search.php">
-    <button class="btn btn-primary">一覧へ</button>
-</form>
+<div class="container mt-5">
+    <div class="card">
+        <div class="card-header">
+            <h5 class="card-title"><?php echo $article['subject']; ?></h5>
+        </div>
+        <div class="card-body">
+            <p class="card-text"><?php echo nl2br($article['body']); ?></p>
+        </div>
+        <div class="card-footer text-muted">
+            <div class="container d-flex gap-2 justify-content-end">
+                <p>筆者: <?php echo $article['name']; ?></p>
+                <p>更新日時: <?php echo $article['modified']; ?></p>
+            </div>
+            <?php if($loggedInUserId === $article['author']) { ?>
+                <div class="d-flex justify-content-center">
+                    <form action="update.php" method="get" class="me-2">
+                        <input type="hidden" name="id" value="<?php echo $id; ?>">
+                        <button class="btn btn-primary">更新</button>
+                    </form>
+                    <form action="delete.php" method="get">
+                        <input type="hidden" name="id" value="<?php echo $id; ?>">
+                        <button class="btn btn-danger">削除</button>
+                    </form>
+                </div>
+            <?php } ?>
+        </div>
+    </div>
+    <div class="mt-3">
+        <form action="search.php">
+            <button class="btn btn-primary">一覧へ</button>
+        </form>
+    </div>
+</div>
 </body>
 </html>

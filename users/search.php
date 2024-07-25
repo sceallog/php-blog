@@ -10,7 +10,7 @@ $keyword = isset($_POST['keyword']) ? $_POST['keyword'] : "";
 <!DOCTYPE html>
 <html lang="ja">
 <?php
-setHead('User Search', '../assets/style.css', '../assets/main.js');
+setHead('User Search', '../assets/style.css', '../assets/follow.js');
 ?>
 <body>
 <?php include('../components/navbar.php'); ?>

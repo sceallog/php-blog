@@ -29,9 +29,6 @@ setHead('Read', '../assets/style.css', '../assets/like.js');
                 <div class="container-fluid d-flex gap-3">
                     <?php
                     include '../components/likeButton.php';
-                    echo '
-                        <span class="my-auto" id="like-count-', $article['id'], '">0</span>
-                    ';
                     ?>
 
                 </div>

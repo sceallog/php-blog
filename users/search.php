@@ -10,11 +10,11 @@ $keyword = isset($_POST['keyword']) ? $_POST['keyword'] : "";
 <!DOCTYPE html>
 <html lang="ja">
 <?php
+setHead('User Search', '../assets/style.css', '../assets/follow.js');
 if (!isset($_SESSION['id']) ) {
     header('Location: ../login/login.php');
     exit();
 }
-setHead('User Search', '../assets/style.css', '../assets/main.js');
 ?>
 <body>
 <?php include('../components/navbar.php'); ?>
@@ -33,6 +33,7 @@ setHead('User Search', '../assets/style.css', '../assets/main.js');
     </div>
 <table class="table table-striped">
     <tr>
+        <th>id</th>
         <th>ユーザー名</th>
         <th>名前</th>
         <th></th>
@@ -44,10 +45,11 @@ $loggedInUserId = $_SESSION['id'];
 foreach($result as $row){
     echo "<tr>";
     echo '<td>',
-    '<a class="link-dark" href="read.php?id=',
+    '<a href="read.php?id=',
     $row['id'], '">',
-        $row['userID'],
+        $row['id'],
     '</a></td>';
+    echo "<td>{$row['userID']}</td>";
     echo "<td>{$row['name']}</td>";
     echo "<td>";
     if($loggedInUserId != $row['id']) {

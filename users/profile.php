@@ -31,7 +31,7 @@ $isFollowing = isFollowing($loggedInUserId, $user, $conn);
 <!DOCTYPE html>
 <html lang="ja">
 <?php
-setHead('プロフィール', '../assets/style.css', '../assets/follow.js');
+setHead('プロフィール', '../assets/style.css', '../assets/like.js');
 ?>
 <body>
 <?php include('../components/navbar.php'); ?>
@@ -90,11 +90,17 @@ setHead('プロフィール', '../assets/style.css', '../assets/follow.js');
                     <?php foreach ($articles
 
                                    as $article): ?>
-                        <div class="card mb-3">
+                        <div class="card mb-3 article" <?php echo 'data-article-id="' . $article['id'] . '"' ?>>
                             <div class="card-body">
+                                <div class="d-flex justify-content-between">
                                 <a href="../articles/read.php?id=<?php echo $article['id'] ?>"
                                    class="link-dark stretched-link"><h5
                                             class="card-title"><?php echo $article['subject'] ?></h5></a>
+                                    <div class="likes">
+                                        <span>いいね：</span>
+                                <?php echo '<span class="my-auto" id="like-count-' . $article['id'] . '" >0</span>'; ?>
+                                    </div>
+                                </div>
                                 <p class="card-text"><?php echo nl2br($article['body']) ?></p>
                             </div>
                         </div>

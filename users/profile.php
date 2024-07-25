@@ -26,7 +26,7 @@ setHead('プロフィール', '../assets/style.css', '../assets/main.js');
                 <div class="col-md-6 mb-2 mb-md-0">
                     <div class="card">
                         <div class="card-header d-flex justify-content-between">
-                            <h5 class="card-title">ユーザー詳細</h5>
+                            <h5 class="card-title my-auto">ユーザー詳細</h5>
                             <?php if (isset($loggedInUserId)) { ?>
                                 <div class="d-flex justify-content-end">
                                     <form action="update.php" method="get" class="me-2">
@@ -51,7 +51,7 @@ setHead('プロフィール', '../assets/style.css', '../assets/main.js');
                 <div class="col-md-6 mb-2 mb-md-0">
                     <div class="card">
                         <div class="card-header">
-                            <h5 class="card-title">マイ記事</h5>
+                            <h5 class="card-title my-auto">マイ記事</h5>
                         </div>
                         <div class="card-body">
                             <table class="table table-striped">

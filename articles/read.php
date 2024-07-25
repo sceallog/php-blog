@@ -19,8 +19,20 @@ setHead('Read', '../assets/style.css', '../assets/like.js');
 <?php include('../components/navbar.php'); ?>
     <div class="container mt-5">
         <div class="card">
-            <div class="card-header">
-                <h5 class="card-title"><?php echo $article['subject']; ?></h5>
+            <div class="card-header d-flex justify-content-between">
+                <h5 class="card-title my-auto"><?php echo $article['subject']; ?></h5>
+                <?php if($loggedInUserId === $article['author']) { ?>
+                    <div class="d-flex justify-content-center">
+                        <form action="update.php" method="get" class="me-2">
+                            <input type="hidden" name="id" value="<?php echo $id; ?>">
+                            <button class="btn btn-primary">更新</button>
+                        </form>
+                        <form action="delete.php" method="get">
+                            <input type="hidden" name="id" value="<?php echo $id; ?>">
+                            <button class="btn btn-danger">削除</button>
+                        </form>
+                    </div>
+                <?php } ?>
             </div>
             <div class="card-body">
                 <p class="card-text"><?php echo nl2br($article['body']); ?></p>
@@ -36,18 +48,7 @@ setHead('Read', '../assets/style.css', '../assets/like.js');
                 <p>筆者: <?php echo $article['name']; ?></p>
                 <p>更新日時: <?php echo $article['modified']; ?></p>
                 </div>
-                <?php if($loggedInUserId === $article['author']) { ?>
-                    <div class="d-flex justify-content-center">
-                        <form action="update.php" method="get" class="me-2">
-                            <input type="hidden" name="id" value="<?php echo $id; ?>">
-                            <button class="btn btn-primary">更新</button>
-                        </form>
-                        <form action="delete.php" method="get">
-                            <input type="hidden" name="id" value="<?php echo $id; ?>">
-                            <button class="btn btn-danger">削除</button>
-                        </form>
-                    </div>
-                <?php } ?>
+
             </div>
         </div>
         <div class="mt-3">

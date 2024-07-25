@@ -10,6 +10,10 @@ $keyword = isset($_POST['keyword']) ? $_POST['keyword'] : "";
 <!DOCTYPE html>
 <html lang="ja">
 <?php
+if (!isset($_SESSION['id']) ) {
+    header('Location: ../login/login.php');
+    exit();
+}
 setHead('User Search', '../assets/style.css', '../assets/main.js');
 ?>
 <body>

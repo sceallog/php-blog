@@ -21,7 +21,7 @@ setHead('ログイン', '../assets/style.css', '../assets/main.js');
             </div>
             <div class="d-grid gap-2 col-6 mx-auto">
                 <button type="submit" class="btn btn-success">ログイン</button>
-                <a href="../users/create.php" class="mx-auto">アカウントをお持ちでない方</a>
+                <a href="../users/create.php" class="mx-auto">ユーザー登録</a>
             </div>
         </form>
     </div>

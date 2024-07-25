@@ -45,19 +45,11 @@ if (!isset($_SESSION['id'])) {
             $loggedInUserId = $_SESSION['id'];
             foreach ($result as $user) {
                 echo "<tr>";
-//                if ($loggedInUserId == $user['id']) {
                     echo '<td>',
                     '<a class="link-dark" href="profile.php?id=',
                     $user['id'], '">',
                     $user['name'],
                     '</a></td>';
-//                } else {
-//                    echo '<td>',
-//                    '<a class="link-dark" href="read.php?id=',
-//                    $user['id'], '">',
-//                    $user['name'],
-//                    '</a></td>';
-//                }
                 echo "<td>{$user['name']}</td>";
                 echo "<td>";
                 if ($loggedInUserId != $user['id']) {

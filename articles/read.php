@@ -25,7 +25,7 @@ setHead('Read', '../assets/style.css', '../assets/like.js');
                     <div class="d-flex justify-content-center">
                         <form action="update.php" method="get" class="me-2">
                             <input type="hidden" name="id" value="<?php echo $id; ?>">
-                            <button class="btn btn-primary">更新</button>
+                            <button class="btn btn-primary">編集</button>
                         </form>
                         <form action="delete.php" method="get">
                             <input type="hidden" name="id" value="<?php echo $id; ?>">

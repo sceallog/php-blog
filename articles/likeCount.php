@@ -9,8 +9,9 @@ function getLikeCount($article_id, $conn){
     ");
     $statement->execute(array('article_id' => $article_id));
     $result = $statement->get_result();
-    $row = $result->fetch_assoc();
+//    $row = $result->fetch_assoc();
 
-    echo $row['like_count'];
+//    echo $row['like_count'];
+    echo $result->fetch_assoc()['like_count'];
 }
 

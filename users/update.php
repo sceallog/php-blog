@@ -48,7 +48,7 @@ setHead('User Update', '../assets/style.css', '../assets/main.js');
 <body>
 <?php
 if(isset($count) && $count == 1) {
-    echo "ユーザ情報を更新しました。id = {$id}<br>";
+    header('Location: ./profile.php?id='.$id);
 }
 ?>
 <div class="container py-4">
@@ -72,6 +72,9 @@ if(isset($count) && $count == 1) {
     <button type="submit" class="btn btn-success">更新</button>
     </div>
 </form>
+        <div class="d-grid gap-2 col-6 mx-auto">
+            <a href="profile.php?id=<?php echo($id) ?>" class="btn btn-outline-danger mt-4">キャンセル</a>
+        </div>
     </div>
 </div>
 </body>

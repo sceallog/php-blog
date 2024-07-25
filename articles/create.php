@@ -24,16 +24,12 @@ if ($subject != '' && $body != '') {
 ?>
 <!DOCTYPE html>
 <html lang="ja">
-<?php setHead('Article Search', '../assets/style.css', '../assets/main.js'); ?>
+<?php setHead('記事の作成', '../assets/style.css', '../assets/main.js'); ?>
 <body>
 <?php
 include '../components/navbar.php';
 if (isset($id)) {
-    echo "記事を追加しました。id = ";
-    echo '<a href="read.php?id=',
-    $id, '">',
-    $id,
-    '</a><br>';
+    header("Location: read.php?id=" . $id);
 }
 ?>
 <div class="container py-4">

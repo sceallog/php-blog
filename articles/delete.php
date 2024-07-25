@@ -24,8 +24,7 @@ if($id != ''){
     );
     $count = $statement -> rowCount();
     if(isset($count) && $count == 1){
-        echo "記事を削除しました。id = {$id}";
-        echo "<button><a href='search.php'>一覧へ</a></button>";
+        header('Location: ../articles/search.php');
     }
 }
 ?>

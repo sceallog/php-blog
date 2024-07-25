@@ -4,17 +4,18 @@ include '../components/head.php';
 require '../functions/isFollowing.php';
 require '../functions/getUser.php';
 require '../functions/getArticlesByAuthorId.php';
+require '../functions/getFollowing.php';
 
 $conn = connect();
 $id = $_GET['id'];
 $loggedInUserId = $_SESSION['id'];
-$row = getUser($loggedInUserId, $conn);
+$row = getUser($id, $conn);
 $isFollowing = isFollowing($loggedInUserId, $row, $conn);
 ?>
 <!DOCTYPE html>
 <html lang="ja">
 <?php
-setHead('プロフィール', '../assets/style.css', '../assets/main.js');
+setHead('プロフィール', '../assets/style.css', '../assets/follow.js');
 ?>
 <body>
 <?php include('../components/navbar.php'); ?>
@@ -25,7 +26,7 @@ setHead('プロフィール', '../assets/style.css', '../assets/main.js');
             <div class="row row-cols-1 row-cols-md-2">
                 <div class="col-md-6 mb-2 mb-md-0">
                     <div class="card">
-                        <div class="card-header d-flex justify-content-between">
+                        <div class="card-header d-flex justify-content-between" >
                             <h5 class="card-title my-auto">ユーザー詳細</h5>
                             <?php if (isset($loggedInUserId)) { ?>
                                 <div class="d-flex justify-content-end">
@@ -55,12 +56,15 @@ setHead('プロフィール', '../assets/style.css', '../assets/main.js');
                         </div>
                         <div class="card-body">
                             <table class="table table-striped">
+                                <thead>
                                 <tr>
                                     <th>表題</th>
                                     <th>更新日時</th>
                                 </tr>
+                                </thead>
+                                <tbody>
                                 <?php
-                                $filtered_result = getArticlesByAuthorId($loggedInUserId, $conn);
+                                $filtered_result = getArticlesByAuthorId($id, $conn);
                                 foreach ($filtered_result as $row) {
                                     echo "<tr>";
                                     echo '<td>',
@@ -72,12 +76,51 @@ setHead('プロフィール', '../assets/style.css', '../assets/main.js');
                                     echo "</tr>";
                                 }
                                 ?>
+                                </tbody>
                             </table>
                         </div>
                     </div>
                 </div>
             </div>
         </div>
+        <?php if ($loggedInUserId == $id) { ?>
+        <div class="container-fluid mt-4">
+            <div class="row row-cols-1 row-cols-md-2">
+                <div class="col-md-6 mb-2 mb-md-0">
+                    <div class="card">
+                        <div class="card-header">
+                            <h5 class="card-title my-auto">フォロー中のユーザー</h5>
+                        </div>
+                        <div class="card-body">
+                            <table class="table table-striped">
+                                <thead>
+                                <tr>
+                                    <th>表題</th>
+                                    <th>更新日時</th>
+                                </tr>
+                                </thead>
+                                <tbody>
+                                <?php
+                                $following = getFollowing($loggedInUserId, $conn);
+                                foreach ($following as $row) {
+                                    echo "<tr>";
+                                    echo '<td>',
+                                    '<a class="link-dark" href="read.php?id=',
+                                    $row['id'], '">',
+                                    $row['userID'],
+                                    '</a></td>';
+                                    echo "<td>{$row['name']}</td>";
+                                    echo "</tr>";
+                                }
+                                ?>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <?php } ?>
     </div>
 </body>
 </html>

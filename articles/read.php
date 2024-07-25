@@ -38,12 +38,14 @@ setHead('Read', '../assets/style.css', '../assets/like.js');
                 <p class="card-text"><?php echo nl2br($article['body']); ?></p>
             </div>
             <div class="card-footer text-muted">
+                <?php if(isset($loggedInUserId)) { ?>
                 <div class="container-fluid d-flex gap-3">
                     <?php
                     include '../components/likeButton.php';
                     ?>
 
                 </div>
+                <?php } ?>
                 <div class="container d-flex gap-2 justify-content-end">
                 <p>筆者: <?php echo $article['name']; ?></p>
                 <p>更新日時: <?php echo $article['modified']; ?></p>

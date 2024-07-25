@@ -37,11 +37,14 @@ include('../components/navbar.php');
         </div>
         <hr>
         <table class="table table-striped">
+            <thead>
             <tr>
                 <th>表題</th>
                 <th>筆者</th>
                 <th>更新日時</th>
             </tr>
+            </thead>
+            <tbody>
             <?php
             $result = getArticlesByKeyword($keyword, $conn);
 
@@ -57,6 +60,7 @@ include('../components/navbar.php');
                 echo "</tr>";
             }
             ?>
+            </tbody>
         </table>
     </div>
 </div>

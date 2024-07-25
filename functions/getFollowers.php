@@ -6,12 +6,6 @@ function getFollowers($userId, $conn) {
         WHERE r.followed_id = :userId        
     ");
     $statement->execute(array("userId" => $userId));
-    $result = $statement->fetchAll();
+    return $statement->fetchAll();
 
-    $followers = array();
-    foreach ($result as $follower) {
-        $followers[] = $follower;
-    }
-
-    return $followers;
 }

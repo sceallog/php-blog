@@ -18,7 +18,7 @@ setHead('Read', '../assets/style.css', '../assets/like.js');
 <body>
 <?php include('../components/navbar.php'); ?>
     <div class="container mt-5">
-        <div class="card">
+        <div class="card article" <?php echo 'data-article-id="' . $article['id'] . '"'; ?>>
             <div class="card-header d-flex justify-content-between">
                 <h5 class="card-title my-auto"><?php echo $article['subject']; ?></h5>
                 <?php if($loggedInUserId === $article['author']) { ?>
@@ -42,6 +42,7 @@ setHead('Read', '../assets/style.css', '../assets/like.js');
                 <div class="container-fluid d-flex gap-3">
                     <?php
                     include '../components/likeButton.php';
+                    echo '<span class="my-auto" id="like-count-' . $article['id'] . '" >0</span>';
                     ?>
 
                 </div>
@@ -59,5 +60,9 @@ setHead('Read', '../assets/style.css', '../assets/like.js');
             </form>
         </div>
     </div>
+
+<script>
+
+</script>
 </body>
 </html>

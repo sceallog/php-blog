@@ -21,6 +21,7 @@ include("../connect.php");
         header("Location:../articles/search.php");
     else:
         // ログイン失敗
-        header("Location:failure.html");
+        echo "<script>alert('ログインに失敗しました。ユーザー名とパスワードを確認し、再度入力してください。');</script>";
+        echo "<script>window.location.href='login.php';</script>";
     endif;
 ?>

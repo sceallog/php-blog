@@ -29,7 +29,6 @@ setHead('User Search', '../assets/style.css', '../assets/main.js');
     </div>
 <table class="table table-striped">
     <tr>
-        <th>id</th>
         <th>ユーザー名</th>
         <th>名前</th>
         <th></th>
@@ -41,11 +40,10 @@ $loggedInUserId = $_SESSION['id'];
 foreach($result as $row){
     echo "<tr>";
     echo '<td>',
-    '<a href="read.php?id=',
+    '<a class="link-dark" href="read.php?id=',
     $row['id'], '">',
-        $row['id'],
+        $row['userID'],
     '</a></td>';
-    echo "<td>{$row['userID']}</td>";
     echo "<td>{$row['name']}</td>";
     echo "<td>";
     if($loggedInUserId != $row['id']) {

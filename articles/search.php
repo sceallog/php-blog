@@ -33,7 +33,6 @@ include ('../components/navbar.php');
 <hr>
 <table class="table table-striped">
     <tr>
-        <th>id</th>
         <th>表題</th>
         <th>筆者</th>
         <th>更新日時</th>
@@ -44,11 +43,10 @@ $result = getArticlesByKeyword($keyword, $conn);
 foreach($result as $row){
     echo "<tr>";
     echo '<td>',
-    '<a href="read.php?id=',
+    '<a class="link-dark" href="read.php?id=',
     $row['id'], '">',
-        $row['id'],
+        $row['subject'],
     '</a></td>';
-    echo "<td>{$row['subject']}</td>";
     echo "<td>{$row['name']}</td>";
     echo "<td>{$row['modified']}</td>";
     echo "</tr>";

@@ -5,8 +5,7 @@ if (isset($loggedInUser)) {
     <div class='nav-item dropdown'>
         <a href='#' class='nav-link dropdown-toggle' role='button' data-bs-toggle='dropdown' data-bs-display='static'>${loggedInUser}</a>
         <ul class='dropdown-menu dropdown-menu-lg-end'>
-            <li><a href='#' class='dropdown-item'>プロフィール</a></li>
-            <li><a href='#' class='dropdown-item'>マイ記事</a></li>
+            <li><a href='../users/profile.php' class='dropdown-item'>プロフィール</a></li>
             <li><hr class='dropdown-divider'></li>
             <li><a href='../login/logout.php' class='dropdown-item text-danger'>ログアウト</a></li>
         </ul>
